@@ -1,20 +1,25 @@
-{% extends "index.html" %}
-
-{% block title %}Page App{% endblock %}
-
+{% extends "index.html" %} 
+{% block title %}Page App {%endblock %} 
 {% block content %}
     <form method="POST">
-        {% csrf_token %}
+        {% csrf_token %} 
         {{ form }}
-        <input type="submit" value="Scrape">
+    <input type="submit" value="Scrape" />
     </form>
-{% if page_list %}
-    <ul>
-    {% for page in page_list %}
-        <li><a href="{% url 'scrape:detail' page.id %}">{{ page.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No page are available.</p>
-{% endif %}
+    {% if page_list %}
+        <table style="width: 100%">
+            <tr>
+                <th>Title</th>
+                <th>Total Links</th>
+            </tr>
+        {% for page in page_list %}
+            <tr>
+                <td><a href="{% url 'scrape:detail' page.id %}">{{ page.title }}</a></td>
+                <td>{{page.count}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>None page is registered.</p>
+    {% endif %} 
 {% endblock %}

@@ -5,9 +5,11 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
+  <p><a href="{% url 'scrape:index' %}">Pages</a></p>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
-  <p>You are not logged in</p>
+  <p>Please Log In to Continue</p>
   <a href="{% url 'login' %}">Log In</a>
+  <p>If you don't have an account please <a href="{%url 'signup' %}">sign-up</a>!</p>
 {% endif %}
 {% endblock %}

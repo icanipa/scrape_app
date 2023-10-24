@@ -1,0 +1,15 @@
+body{ 
+    margin:50px;
+    background-color: rgb(233, 233, 233); 
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+th, td {
+    text-align: left;
+    padding: 20px;
+}

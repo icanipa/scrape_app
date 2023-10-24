@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block title %}Page App{% endblock %}
+
+{% block content %}
+    <h1>{{page_name}}</h2>
+        <a href="{{request.META.HTTP_REFERER}}">back</a>
+    {% if page_details %}
+        <table style='width:100%;'>
+            <tr>
+                <th>Name</th>
+                <th>Link</th>
+            </tr>
+            {% for page in page_details %}
+            <tr>
+                <td> {{ page.name }}</td>
+                <td> {{ page.link}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% block pagination %}
+            {% if page_details.has_previous %}
+                <a href="?page={{ page_details.previous_page_number }}">    
+                    Previous Page
+                </a>
+            {% endif%}
+            <a>{{page_details.number}} of {{page_details.paginator.num_pages}}</a>
+            {% if page_details.has_next %}
+            <a href="?page={{ page_details.next_page_number }}">
+                Next Page
+            </a>
+            {% endif%}
+        {% endblock %}
+    {% else %}
+        <p>None page is registered.</p>
+    {% endif %}
+{% endblock %}
